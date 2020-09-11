@@ -13,6 +13,7 @@ class CoffeeMachine:
         """Display default start menu"""
         print("Write action (buy, fill, take, remaining, exit):")
 
+    # TODO add in basic error catching e.g. .lower() on string inputs 
     def user_request(self):
         """Process user input to one of 5 requests"""
         while True:
@@ -39,6 +40,8 @@ class CoffeeMachine:
                 print(self.display_supply_levels())
             elif user_action == 'exit':
                 break
+            else:
+                print("Please re-enter your request")
 
     def buy(self, coffee_type):
         """Process type of coffee and how this updates the machine's supplies"""
@@ -95,7 +98,8 @@ class CoffeeMachine:
         """Used in fill methods to question amount desired to add"""
         print("Write how many {} of {} do you want to add:".format(measure, resource))
 
-    """All methods below fill the related supply; these could all be one function but I felt having them separate had better readability."""
+    """All methods below fill the related supply; these could all be one function but I felt having them separate 
+       had better readability."""
     def fill_water(self):
         self.display_fill_message("water", "ml")
         d_water = int(input())
@@ -117,11 +121,12 @@ class CoffeeMachine:
         self.cups += int(d_cups)
         
     def take(self):
-        ''' Withdraw all money from the machine '''
+        """Withdraw all money from the machine"""
         print("I gave you %d money" % (self.money))
         self.money = 0
 
     def display_supply_levels(self):
+        """Display the current level of all supplies in the machine"""
         print("The coffee machine has:")
         print(str(self.water) + " of water")
         print(str(self.milk) + " of milk")
@@ -129,5 +134,6 @@ class CoffeeMachine:
         print(str(self.cups) + " of disposable cups")
         print(str(self.money) + " of money")
 
+        
 coffee_machine = CoffeeMachine()
 coffee_machine.user_request()
