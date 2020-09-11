@@ -1,3 +1,6 @@
+"""
+The final step of the project is to refactor the program using an overarching class.
+"""
 class CoffeeMachine:
     def __init__(self):
         self.water = 400
@@ -37,8 +40,6 @@ class CoffeeMachine:
             elif user_action == 'exit':
                 break
 
-
-    # TODO get the maths on these simplified, test += rather than self + self
     def buy(self, coffee_type):
         """Process type of coffee and how this updates the machine's supplies"""
         # Espresso
@@ -50,10 +51,10 @@ class CoffeeMachine:
             elif self.cups == 0:
                 print("Sorry, not enough cups!")
             else:
-                self.water = self.water - 250
-                self.beans = self.beans - 16
-                self.cups = self.cups - 1
-                self.money = self.money + 4
+                self.water -= 250
+                self.beans -= 16
+                self.cups -= 1
+                self.money += 4
                 print("I have enough resources, making you a coffee!")
         # Latte
         elif coffee_type == 2:
@@ -90,24 +91,26 @@ class CoffeeMachine:
                 self.cups = self.cups - 1
                 print("I have enough resources, making you a coffee!")
 
-
     def display_fill_message(self, resource, measure):
         """Used in fill methods to question amount desired to add"""
         print("Write how many {} of {} do you want to add:".format(measure, resource))
 
-    """All methods below fill the related supply"""
+    """All methods below fill the related supply; these could all be one function but I felt having them separate had better readability."""
     def fill_water(self):
         self.display_fill_message("water", "ml")
         d_water = int(input())
         self.water += int(d_water)
+        
     def fill_milk(self):
         self.display_fill_message("milk", "grams")
         d_milk = int(input())
         self.milk += int(d_milk)
+        
     def fill_beans(self):
         self.display_fill_message("coffee beans", "grams")
         d_beans = int(input())
         self.beans += int(d_beans)
+        
     def fill_cups(self):
         self.display_fill_message("coffee", "disposable cups")
         d_cups = int(input())
